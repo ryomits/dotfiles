@@ -30,3 +30,8 @@ setopt hist_reduce_blanks
 
 # Command
 export PATH=/usr/local/bin:$PATH
+
+# Git
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+autoload -U compinit
+compinit -u
