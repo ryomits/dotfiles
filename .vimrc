@@ -4,7 +4,6 @@ set history=100
 set ignorecase
 set smartcase
 set title
-set number
 set showcmd
 set laststatus=2
 set showmatch
@@ -16,4 +15,3 @@ set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=
 set wrap
 set tabstop=4
 syntax on
-

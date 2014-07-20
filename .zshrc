@@ -7,7 +7,7 @@ export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
 
 # Prompt
-PROMPT='%m %/$ '
+PROMPT='[%n %~]%# '
 
 # History
 HISTFILE=$HOME/.zsh_history
@@ -18,6 +18,10 @@ alias vi=vim
 alias ll="ls -l"
 alias rm="rm -i"
 alias mv="mv -i"
+alias j="jobs"
+alias f="fg"
+
+DIRSTACKSIZE=100
 
 setopt auto_menu
 setopt auto_cd
@@ -27,11 +31,14 @@ setopt multios
 setopt print_eight_bit
 setopt extended_history
 setopt hist_reduce_blanks
+setopt correct
+
+# Completion
+autoload -U compinit
+compinit -u
 
 # Command
 export PATH=/usr/local/bin:$PATH
 
 # Git
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-autoload -U compinit
-compinit -u
