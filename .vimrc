@@ -15,3 +15,4 @@ set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=
 set wrap
 set tabstop=4
 syntax on
+inoremap <silent> jj <ESC>
