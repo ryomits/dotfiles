@@ -14,3 +14,4 @@ cask install virtualbox
 cask install vagrant
 cask install alfred
 cask install alfred link
+cask install dropbox
