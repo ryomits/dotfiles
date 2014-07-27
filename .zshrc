@@ -18,6 +18,7 @@ alias vi=vim
 alias ll="ls -l"
 alias rm="rm -i"
 alias mv="mv -i"
+alias cp="cp -i"
 alias j="jobs"
 alias f="fg"
 
@@ -42,3 +43,6 @@ export PATH=/usr/local/bin:$PATH
 
 # Git
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+
+# Ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
