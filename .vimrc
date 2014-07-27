@@ -13,6 +13,9 @@ set encoding=utf8
 set fenc=utf8
 set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=
 set wrap
-set tabstop=4
-syntax on
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set softtabstop=0
 inoremap <silent> jj <ESC>
+syntax on
