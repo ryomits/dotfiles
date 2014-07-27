@@ -7,6 +7,8 @@ install git
 install tig
 install curl
 install vim
+install rbenv
+install ruby-build
 cask install google-chrome
 cask install kobito
 cask install google-japanese-ime
