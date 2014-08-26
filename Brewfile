@@ -9,8 +9,6 @@ install curl
 install vim
 install rbenv
 install ruby-build
-install docker
-install boot2docker
 cask install google-chrome
 cask install kobito
 cask install google-japanese-ime
@@ -20,3 +18,4 @@ cask install alfred
 cask install alfred link
 cask install dropbox
 cask install skitch
+cask install boot2docker
