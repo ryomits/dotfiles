@@ -9,6 +9,7 @@ install curl
 install vim
 install rbenv
 install ruby-build
+install jmeter
 cask install google-chrome
 cask install kobito
 cask install google-japanese-ime
