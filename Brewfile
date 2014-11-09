@@ -10,6 +10,7 @@ install vim
 install rbenv
 install ruby-build
 install jmeter
+install go
 cask install google-chrome
 cask install kobito
 cask install google-japanese-ime
