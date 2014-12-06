@@ -21,3 +21,5 @@ cask install alfred link
 cask install dropbox
 cask install skitch
 cask install boot2docker
+cask install sequel-pro
+cask install mongohub
