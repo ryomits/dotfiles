@@ -7,12 +7,15 @@ export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
 
 # Prompt
-PROMPT='[%n %~]%# '
+PROMPT='%(?,%F{green},%F{red})[%n %~]%#%f '
 
 # History
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+
+autoload -U compinit vcs_info
+compinit -u
 
 alias vi=vim
 alias ll="ls -l"
@@ -21,8 +24,26 @@ alias mv="mv -i"
 alias cp="cp -i"
 alias j="jobs"
 alias f="fg"
+alias .="source"
+alias history="history -i 1"
+alias gti="git"
 
 DIRSTACKSIZE=100
+
+# PROMPT
+
+# RPROMT
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats '[%b]%u%c'
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' unstagedstr '-'
+precmd () {
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+RPROMPT='%1(v|%F{yellow}%1v%f|)'
 
 setopt auto_menu
 setopt auto_cd
@@ -33,10 +54,13 @@ setopt print_eight_bit
 setopt extended_history
 setopt hist_reduce_blanks
 setopt correct
-
-# Completion
-autoload -U compinit
-compinit -u
+setopt extended_history
+setopt append_history
+setopt inc_append_history
+setopt hist_save_no_dups
+setopt hist_no_functions
+setopt hist_no_store
+setopt hist_ignore_dups
 
 # Command
 export PATH=/usr/local/bin:$PATH
@@ -46,3 +70,6 @@ fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Node
+export PATH=$HOME/.nodebrew/current/bin:$PATH
