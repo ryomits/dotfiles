@@ -1,3 +1,35 @@
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+call dein#begin(expand('~/.vim/dein'))
+
+call dein#add('Shougo/dein.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('vim-scripts/ruby-matchit')
+call dein#add('tpope/vim-endwise')
+call dein#add('jpo/vim-railscasts-theme')
+call dein#add('pangloss/vim-javascript')
+call dein#add('fatih/vim-go')
+call dein#add('elixir-lang/vim-elixir')
+call dein#add('itchyny/lightline.vim')
+call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('mxw/vim-jsx')
+call dein#add('jlanzarotta/bufexplorer')
+
+call dein#end()
+
+if dein#check_install()
+  call dein#install()
+endif
+filetype plugin indent on
+
 set nocompatible
 set backspace=indent,eol,start
 set history=100
@@ -11,7 +43,6 @@ set matchtime=1
 set termencoding=utf8
 set encoding=utf8
 set fenc=utf8
-set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=
 set wrap
 set tabstop=2
 set expandtab
@@ -22,39 +53,6 @@ set nu
 inoremap <silent> jj <ESC>
 nmap <silent> ,l :BufExplorer<CR>
 let mapleader = "\<Space>"
-syntax on
-
-" Neobundle
-let vundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing NeoBundle..."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
-endif
-
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'vim-scripts/ruby-matchit'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'koron/codic-vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'jlanzarotta/bufexplorer'
-
-call neobundle#end()
-filetype plugin indent on
-NeoBundleCheck
 
 " ruby
 autocmd FileType ruby setlocal sw=2 sts=0 ts=2 et
@@ -74,4 +72,5 @@ autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
 autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
 autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
+syntax on
 colorscheme railscasts
