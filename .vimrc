@@ -22,6 +22,8 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('bronson/vim-trailing-whitespace')
 call dein#add('mxw/vim-jsx')
 call dein#add('jlanzarotta/bufexplorer')
+call dein#add('vim-scripts/AnsiEsc.vim')
+call dein#add('szw/vim-tags')
 
 call dein#end()
 
@@ -53,6 +55,11 @@ set nu
 inoremap <silent> jj <ESC>
 nmap <silent> ,l :BufExplorer<CR>
 let mapleader = "\<Space>"
+
+" ctags
+let g:vim_tags_project_tags_command = "/usr/local/bin/ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
+let g:vim_tags_gems_tags_command = "/usr/local/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
+nnoremap <C-]> g<C-]>
 
 " ruby
 autocmd FileType ruby setlocal sw=2 sts=0 ts=2 et
