@@ -24,6 +24,8 @@ call dein#add('mxw/vim-jsx')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('vim-scripts/AnsiEsc.vim')
 call dein#add('szw/vim-tags')
+call dein#add('leafgarland/typescript-vim')
+call dein#add('AlessandroYorba/Alduin')
 
 call dein#end()
 
@@ -61,23 +63,11 @@ let g:vim_tags_project_tags_command = "/usr/local/bin/ctags -R {OPTIONS} {DIRECT
 let g:vim_tags_gems_tags_command = "/usr/local/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 nnoremap <C-]> g<C-]>
 
-" ruby
 autocmd FileType ruby setlocal sw=2 sts=0 ts=2 et
-
-" javascript
+autocmd FileType typescript setlocal sw=2 sts=0 ts=2 noet
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 
-" go
-autocmd FileType go setlocal sw=4 sts=4 ts=4 et
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage)
-autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
-autocmd FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
-autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
-autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-
 syntax on
-colorscheme railscasts
+colorscheme Alduin
+
+set noswapfile
