@@ -16,16 +16,21 @@ call dein#add('vim-scripts/ruby-matchit')
 call dein#add('tpope/vim-endwise')
 call dein#add('jpo/vim-railscasts-theme')
 call dein#add('pangloss/vim-javascript')
-call dein#add('fatih/vim-go')
-call dein#add('elixir-lang/vim-elixir')
-call dein#add('itchyny/lightline.vim')
 call dein#add('bronson/vim-trailing-whitespace')
-call dein#add('mxw/vim-jsx')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('vim-scripts/AnsiEsc.vim')
 call dein#add('szw/vim-tags')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('AlessandroYorba/Alduin')
+call dein#add('nikvdp/ejs-syntax')
+call dein#add('gosukiwi/vim-atom-dark')
+call dein#add('jacoborus/tender.vim')
+call dein#add('Quramy/tsuquyomi')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('tpope/vim-fugitive')
+call dein#add('elzr/vim-json')
+call dein#add('digitaltoad/vim-pug')
 
 call dein#end()
 
@@ -64,10 +69,18 @@ let g:vim_tags_gems_tags_command = "/usr/local/bin/ctags -R {OPTIONS} `bundle sh
 nnoremap <C-]> g<C-]>
 
 autocmd FileType ruby setlocal sw=2 sts=0 ts=2 et
-autocmd FileType typescript setlocal sw=2 sts=0 ts=2 noet
+autocmd FileType typescript setlocal sw=4 sts=0 ts=4 noet
+autocmd FileType ejs setlocal sw=4 sts=0 ts=4 noet
+autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
+au BufRead,BufNewFile *.ts  setlocal filetype=typescript
 
 syntax on
 colorscheme Alduin
 
 set noswapfile
+let g:airline_theme='luna'
+set laststatus=2
+let g:airline_powerline_fonts = 1
+vmap <Space>co <S-i>// <ESC>
+let mapleader = "\<Space>"
