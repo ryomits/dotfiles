@@ -30,9 +30,8 @@ alias gti="git"
 
 DIRSTACKSIZE=100
 
-# PROMPT
 
-# RPROMT
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats '[%b]%u%c'
@@ -62,14 +61,9 @@ setopt hist_no_functions
 setopt hist_no_store
 setopt hist_ignore_dups
 
-# Command
 export PATH=/usr/local/bin:$PATH
-
-# Git
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-
-# Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Node
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+if [ -e /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
