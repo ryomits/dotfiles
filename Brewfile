@@ -24,4 +24,5 @@ brew "tmux"
 brew "tree"
 brew "vim"
 brew "zsh"
+brew "zsh-completions"
 brew "sanemat/font/ricty", args: ["with-powerline"]
