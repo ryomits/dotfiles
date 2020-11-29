@@ -32,6 +32,7 @@ call dein#add('elzr/vim-json')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('jparise/vim-graphql')
 call dein#add('phpactor/phpactor', {'build': 'composer install'})
+call dein#add('pantharshit00/vim-prisma')
 
 call dein#end()
 
@@ -75,6 +76,7 @@ autocmd FileType ejs setlocal sw=4 sts=0 ts=4 noet
 autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 autocmd BufRead,BufNewFile *.ts  setlocal filetype=typescript
+autocmd BufRead,BufNewFile *.tsx  setlocal filetype=typescript
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 syntax on
