@@ -74,11 +74,13 @@ let g:asyncomplete_auto_popup = 0
 nnoremap <C-]> g<C-]>
 
 autocmd BufRead,BufNewFile *.ts  setlocal filetype=typescript
-autocmd BufRead,BufNewFile *.tsx  setlocal filetype=typescript
 autocmd FileType typescript setlocal sw=4 sts=0 ts=4 noet
 autocmd FileType typescript setlocal omnifunc=lsp#complete
 autocmd FileType typescript nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType typescript nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType typescriptreact setlocal omnifunc=lsp#complete
+autocmd FileType typescriptreact nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType typescriptreact nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 autocmd FileType vim setlocal omnifunc=lsp#complete
 autocmd FileType rust setlocal omnifunc=lsp#complete
 autocmd FileType rust nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
@@ -91,6 +93,7 @@ autocmd FileType sh nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType sh nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
 autocmd BufNewFile,BufRead *.es6 setfiletype javascript
+let g:lsp_diagnostics_float_cursor=1
 
 syntax on
 colorscheme Alduin
@@ -98,5 +101,5 @@ colorscheme Alduin
 set noswapfile
 let g:airline_theme='luna'
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 vmap <Space>co <S-i>// <ESC>
