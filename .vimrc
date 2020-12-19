@@ -24,7 +24,6 @@ call dein#add('AlessandroYorba/Alduin')
 call dein#add('nikvdp/ejs-syntax')
 call dein#add('gosukiwi/vim-atom-dark')
 call dein#add('jacoborus/tender.vim')
-call dein#add('Quramy/tsuquyomi')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('tpope/vim-fugitive')
@@ -33,6 +32,12 @@ call dein#add('editorconfig/editorconfig-vim')
 call dein#add('jparise/vim-graphql')
 call dein#add('phpactor/phpactor', {'build': 'composer install'})
 call dein#add('pantharshit00/vim-prisma')
+call dein#add('rust-lang/rust.vim')
+call dein#add('mattn/vim-sonictemplate')
+call dein#add('prabirshrestha/vim-lsp')
+call dein#add('mattn/vim-lsp-settings')
+call dein#add('prabirshrestha/asyncomplete.vim')
+call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 
 call dein#end()
 
@@ -65,19 +70,27 @@ inoremap <silent> jj <ESC>
 nmap <silent> ,l :BufExplorer<CR>
 let mapleader = "\<Space>"
 
-" ctags
-let g:vim_tags_project_tags_command = "/usr/local/bin/ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
-let g:vim_tags_gems_tags_command = "/usr/local/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
+let g:asyncomplete_auto_popup = 0
 nnoremap <C-]> g<C-]>
 
-autocmd FileType ruby setlocal sw=2 sts=0 ts=2 et
-autocmd FileType typescript setlocal sw=4 sts=0 ts=4 noet
-autocmd FileType ejs setlocal sw=4 sts=0 ts=4 noet
-autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
-autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 autocmd BufRead,BufNewFile *.ts  setlocal filetype=typescript
 autocmd BufRead,BufNewFile *.tsx  setlocal filetype=typescript
-autocmd FileType php setlocal omnifunc=phpactor#Complete
+autocmd FileType typescript setlocal sw=4 sts=0 ts=4 noet
+autocmd FileType typescript setlocal omnifunc=lsp#complete
+autocmd FileType typescript nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType typescript nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType vim setlocal omnifunc=lsp#complete
+autocmd FileType rust setlocal omnifunc=lsp#complete
+autocmd FileType rust nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType rust nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType php setlocal omnifunc=lsp#complete
+autocmd FileType php nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType php nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType sh setlocal omnifunc=lsp#complete
+autocmd FileType sh nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType sh nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
+autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 
 syntax on
 colorscheme Alduin
@@ -87,4 +100,3 @@ let g:airline_theme='luna'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 vmap <Space>co <S-i>// <ESC>
-let mapleader = "\<Space>"
