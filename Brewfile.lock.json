@@ -788,6 +788,12 @@
         "options": {
           "full_name": "1password"
         }
+      },
+      "slack": {
+        "version": "4.13.0",
+        "options": {
+          "full_name": "slack"
+        }
       }
     }
   },
