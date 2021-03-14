@@ -5,13 +5,13 @@
         "revision": "3fbca9f51db8e7255f4b2f48daba1e04a2d99ad6"
       },
       "homebrew/cask": {
-        "revision": "20333033edc95a72deca65fb6cbff8e8e9149b3e"
+        "revision": "0232f8cd2446de41cb398049e37f8b877783a641"
       },
       "homebrew/cask-versions": {
-        "revision": "5a8382065d6778c88da10b0470d2edd72297ae51"
+        "revision": "fc3589743b4cd6ad179b6e64ed6da695f1666007"
       },
       "homebrew/core": {
-        "revision": "3cc6a063d22d8e3c12ed013b71be394881bb56aa"
+        "revision": "315eceab5c3f88b3551668c492a2832fc1d275e9"
       },
       "homebrew/services": {
         "revision": "31bb79235694bdd39143843fae37bdfb297cc5cd"
@@ -22,7 +22,7 @@
     },
     "brew": {
       "argocd": {
-        "version": "1.8.7",
+        "version": "1.8.7_1",
         "bottle": {
           "rebuild": 0,
           "cellar": ":any_skip_relocation",
@@ -30,20 +30,20 @@
           "root_url": "https://homebrew.bintray.com/bottles",
           "files": {
             "arm64_big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7.arm64_big_sur.bottle.tar.gz",
-              "sha256": "7b3f291d83c24a290aac7ae024f1c7f99d4a9ceaa7bd91979ebc31aaf8763b18"
+              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7_1.arm64_big_sur.bottle.tar.gz",
+              "sha256": "ca05ba87d8052af20f79a28fcc5822f0ac10b3d072ea88a2ea06118503e2aa11"
             },
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7.big_sur.bottle.tar.gz",
-              "sha256": "435994ced70abb30a1761b05ca6736a985cea8688875033cac7ddaae11ac013b"
+              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7_1.big_sur.bottle.tar.gz",
+              "sha256": "32ba976ad68b3fdb6fb0ebe8364885c72e40dae653caf846f70806d2b5a4287c"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7.catalina.bottle.tar.gz",
-              "sha256": "7ae878a7faf11ce7325433af6db311edcd1cfe158e4739cc0a9d1ccb9ce1847a"
+              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7_1.catalina.bottle.tar.gz",
+              "sha256": "dc3a6ea221d0b2aa2455f6c7fe1ded2784d5ada329a39c9a24d413b6f4d96b18"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7.mojave.bottle.tar.gz",
-              "sha256": "43b06fadea9c394b2f9d686e3a694badaf8f3d61041e267ae6d0542aba63c863"
+              "url": "https://homebrew.bintray.com/bottles/argocd-1.8.7_1.mojave.bottle.tar.gz",
+              "sha256": "e8baffe94bf2cacbbcedb31248a6a8609556a45f6b49e953fe6b7f944bc77e76"
             }
           }
         }
@@ -474,7 +474,7 @@
         }
       },
       "vim": {
-        "version": "8.2.2550",
+        "version": "8.2.2575",
         "bottle": {
           "rebuild": 0,
           "cellar": "/usr/local/Cellar",
@@ -482,20 +482,20 @@
           "root_url": "https://homebrew.bintray.com/bottles",
           "files": {
             "arm64_big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2550.arm64_big_sur.bottle.tar.gz",
-              "sha256": "5762dec18cedeb38cacd60a0a13b6604de9de9dd7fcf4d7ef62e26bb277f5520"
+              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2575.arm64_big_sur.bottle.tar.gz",
+              "sha256": "d241e7539b6f57eb21f8cd1dbd8f6b4c4f20603dd7bdf97712df8e078e872515"
             },
             "big_sur": {
-              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2550.big_sur.bottle.tar.gz",
-              "sha256": "51575035cd148697ced51e882fbc6987124e572ac43f2d89038700f1d51a3ac1"
+              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2575.big_sur.bottle.tar.gz",
+              "sha256": "e1d2d8c85b0fa9a5251045345e4959ce4e49a18c82bc3ae41955e40231961e56"
             },
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2550.catalina.bottle.tar.gz",
-              "sha256": "90d04822c7d5ab8458a7a35cd634ea0b5f7373d7053229d0e00dfed1a891a76d"
+              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2575.catalina.bottle.tar.gz",
+              "sha256": "023d7367e5cbe7ae04f33de39bd4d94e57c9451d48a2f91c6ae609102930a31f"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2550.mojave.bottle.tar.gz",
-              "sha256": "c57a8fd3df4294baa2b0436c1ac100f7af2e9eec1ff201bcc35932977f96fd40"
+              "url": "https://homebrew.bintray.com/bottles/vim-8.2.2575.mojave.bottle.tar.gz",
+              "sha256": "f77faed17b4abdf12d5c3e5d8d9e75631f58e2d5a51bf937eb9638afbfcf2478"
             }
           }
         }
@@ -760,7 +760,7 @@
         }
       },
       "google-chrome": {
-        "version": "89.0.4389.72,4389.72",
+        "version": "89.0.4389.82,4389.82",
         "options": {
           "full_name": "google-chrome"
         }
@@ -802,10 +802,10 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.0.4",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "3cc6a063d22d8e3c12ed013b71be394881bb56aa",
+        "Homebrew/homebrew-core": "315eceab5c3f88b3551668c492a2832fc1d275e9",
         "CLT": "12.4.0.0.1.1610135815",
         "Xcode": "12.0",
-        "macOS": "11.2.2"
+        "macOS": "11.2.3"
       }
     }
   }
