@@ -21,3 +21,5 @@
   unmerged = !git --no-pager diff --name-only --diff-filter=U
   sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
   showpr = !"f() { git log $1...$2 --merges --oneline --reverse --ancestry-path | grep 'Merge pull request #' | head -n 1; }; f"
+[pull]
+  rebase = false
