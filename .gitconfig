@@ -4,6 +4,7 @@
 [core]
   quotepath = false
   editor = /usr/bin/vim
+  pager = delta
 [color]
   ui = true
 [gui]
@@ -23,3 +24,12 @@
   showpr = !"f() { git log $1...$2 --merges --oneline --reverse --ancestry-path | grep 'Merge pull request #' | head -n 1; }; f"
 [pull]
   rebase = false
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
