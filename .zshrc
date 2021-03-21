@@ -30,7 +30,6 @@ alias gti="git"
 
 DIRSTACKSIZE=100
 
-
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
