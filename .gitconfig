@@ -15,14 +15,14 @@
   amend = commit --amend -C HEAD
   st = status
   sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
-  browse = !"f() { hub browse; }; f"
-  compare = !"f() { hub compare $1; }; f"
+  browse = !hub browse
+  compare = !hub compare $2
 [pull]
   rebase = false
 [interactive]
   diffFilter = delta --color-only
 [delta]
-  features = side-by-side line-numbers decorations
+  features = line-numbers decorations
   whitespace-error-style = 22 reverse
 [delta "decorations"]
   commit-decoration-style = bold yellow box ul
