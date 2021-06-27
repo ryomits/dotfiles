@@ -30,7 +30,6 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('elzr/vim-json')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('jparise/vim-graphql')
-call dein#add('phpactor/phpactor', {'build': 'composer install'})
 call dein#add('pantharshit00/vim-prisma')
 call dein#add('rust-lang/rust.vim')
 call dein#add('mattn/vim-sonictemplate')
@@ -38,6 +37,7 @@ call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
 call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+call dein#add('ulwlu/elly.vim')
 
 call dein#end()
 
@@ -96,10 +96,16 @@ autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 let g:lsp_diagnostics_float_cursor=1
 
 syntax on
-colorscheme Alduin
+colorscheme elly
 
 set noswapfile
 let g:airline_theme='luna'
 set laststatus=2
 let g:airline_powerline_fonts=1
 vmap <Space>co <S-i>// <ESC>
+
+let g:syntastic_rust_checkers = ['clippy']
+
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
