@@ -78,3 +78,8 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 source <(kubectl completion zsh)
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
+
+alias g='cd $(ghq root)/$(ghq list | peco)'
