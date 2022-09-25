@@ -21,7 +21,7 @@ brew "zsh-completions"
 brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "docker"
 brew "rustup"
-brew "anyenv"
+brew "asdf"
 brew "awscli"
 brew "gh"
 brew "git-delta"
