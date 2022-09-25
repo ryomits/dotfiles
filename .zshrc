@@ -81,3 +81,6 @@ export PATH="$CARGO_HOME/bin:$PATH"
 alias g='cd $(ghq root)/$(ghq list | peco)'
 
 . /usr/local/opt/asdf/asdf.sh
+
+bindkey -e
+export EDITOR=vim
