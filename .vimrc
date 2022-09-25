@@ -70,7 +70,6 @@ set nu
 set incsearch
 set hlsearch
 set autoread
-set cursorline
 set noswapfile
 inoremap <silent> jj <ESC>
 nmap <silent> ,l :BufExplorer<CR>
@@ -90,27 +89,12 @@ nnoremap ,s :e ++enc=cp932<CR>
 nnoremap ,e :e ++enc=euc-jp<CR>
 nnoremap ,j :e ++enc=iso-2022-jp<CR>
 
-autocmd BufRead,BufNewFile *.ts  setlocal filetype=typescript
 autocmd FileType typescript setlocal sw=2 sts=0 ts=2 noet
-autocmd FileType typescript setlocal omnifunc=lsp#complete
-autocmd FileType typescript nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
-autocmd FileType typescript nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
-autocmd FileType typescriptreact setlocal omnifunc=lsp#complete
-autocmd FileType typescriptreact nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
-autocmd FileType typescriptreact nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
-autocmd FileType vim setlocal omnifunc=lsp#complete
-autocmd FileType rust setlocal omnifunc=lsp#complete
-autocmd FileType rust nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
-autocmd FileType rust nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
-autocmd FileType go setlocal sw=4 sts=0 ts=4 et
-autocmd FileType php setlocal omnifunc=lsp#complete
-autocmd FileType php nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
-autocmd FileType php nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
-autocmd FileType sh setlocal omnifunc=lsp#complete
-autocmd FileType sh nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
-autocmd FileType sh nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
-autocmd BufNewFile,BufRead *.es6 setfiletype javascript
+autocmd FileType go setlocal sw=4 sts=0 ts=4 et
+autocmd FileType typescript,typescriptreact,vim,rust,php,sh setlocal omnifunc=lsp#complete
+autocmd FileType typescript,typescriptreact,vim,rust,php,sh nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType typescript,typescriptreact,vim,rust,php,sh nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 let g:lsp_diagnostics_float_cursor=1
 
 syntax on
