@@ -36,7 +36,8 @@ call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
 call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
-call dein#add('ulwlu/elly.vim')
+call dein#add('fatih/vim-go')
+call dein#add('mattn/vim-sqlfmt')
 
 call dein#end()
 
@@ -57,6 +58,7 @@ set showmatch
 set matchtime=1
 set termencoding=utf8
 set encoding=utf8
+set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932,sjis
 set fenc=utf8
 set wrap
 set tabstop=2
@@ -65,15 +67,31 @@ set shiftwidth=2
 set softtabstop=0
 set hlsearch
 set nu
+set incsearch
+set hlsearch
+set autoread
+set cursorline
+set noswapfile
 inoremap <silent> jj <ESC>
 nmap <silent> ,l :BufExplorer<CR>
+vmap <Space>co <S-i>// <ESC>
 let mapleader = "\<Space>"
+let g:airline_theme='luna'
+let g:airline_powerline_fonts=1
+let g:syntastic_rust_checkers = ['clippy']
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:asyncomplete_auto_popup = 0
 nnoremap <C-]> g<C-]>
+nnoremap ,u :e ++enc=utf-8<CR>
+nnoremap ,s :e ++enc=cp932<CR>
+nnoremap ,e :e ++enc=euc-jp<CR>
+nnoremap ,j :e ++enc=iso-2022-jp<CR>
 
 autocmd BufRead,BufNewFile *.ts  setlocal filetype=typescript
-autocmd FileType typescript setlocal sw=4 sts=0 ts=4 noet
+autocmd FileType typescript setlocal sw=2 sts=0 ts=2 noet
 autocmd FileType typescript setlocal omnifunc=lsp#complete
 autocmd FileType typescript nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType typescript nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
@@ -84,6 +102,7 @@ autocmd FileType vim setlocal omnifunc=lsp#complete
 autocmd FileType rust setlocal omnifunc=lsp#complete
 autocmd FileType rust nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType rust nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType go setlocal sw=4 sts=0 ts=4 et
 autocmd FileType php setlocal omnifunc=lsp#complete
 autocmd FileType php nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType php nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
@@ -95,16 +114,4 @@ autocmd BufNewFile,BufRead *.es6 setfiletype javascript
 let g:lsp_diagnostics_float_cursor=1
 
 syntax on
-colorscheme elly
-
-set noswapfile
-let g:airline_theme='luna'
-set laststatus=2
-let g:airline_powerline_fonts=1
-vmap <Space>co <S-i>// <ESC>
-
-let g:syntastic_rust_checkers = ['clippy']
-
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+colorscheme Alduin

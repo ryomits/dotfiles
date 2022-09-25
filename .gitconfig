@@ -14,7 +14,6 @@
 [alias]
   amend = commit --amend -C HEAD
   st = status
-  sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
   browse = !hub browse
   compare = !hub compare $2
 [pull]
