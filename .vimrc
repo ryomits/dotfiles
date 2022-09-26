@@ -34,13 +34,11 @@ call dein#add('rust-lang/rust.vim')
 call dein#add('mattn/vim-sonictemplate')
 call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
+call dein#add('prabirshrestha/async.vim')
 call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 call dein#add('mattn/vim-sqlfmt')
 call dein#add('mattn/vim-goimports')
-call dein#add('prabirshrestha/async.vim')
-call dein#add('prabirshrestha/asyncomplete.vim')
-call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 
 call dein#end()
 
@@ -99,6 +97,6 @@ autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go setlocal omnifunc
 autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 let g:lsp_diagnostics_float_cursor=1
-
+let g:lsp_text_edit_enabled = 1
 syntax on
 colorscheme Alduin
