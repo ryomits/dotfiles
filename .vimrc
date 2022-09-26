@@ -36,8 +36,11 @@ call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
 call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
-call dein#add('fatih/vim-go')
 call dein#add('mattn/vim-sqlfmt')
+call dein#add('mattn/vim-goimports')
+call dein#add('prabirshrestha/async.vim')
+call dein#add('prabirshrestha/asyncomplete.vim')
+call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 
 call dein#end()
 
@@ -92,9 +95,9 @@ nnoremap ,j :e ++enc=iso-2022-jp<CR>
 autocmd FileType typescript setlocal sw=2 sts=0 ts=2 noet
 autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
 autocmd FileType go setlocal sw=4 sts=0 ts=4 et
-autocmd FileType typescript,typescriptreact,vim,rust,php,sh setlocal omnifunc=lsp#complete
-autocmd FileType typescript,typescriptreact,vim,rust,php,sh nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
-autocmd FileType typescript,typescriptreact,vim,rust,php,sh nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
+autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go setlocal omnifunc=lsp#complete
+autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
+autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 let g:lsp_diagnostics_float_cursor=1
 
 syntax on
