@@ -22,8 +22,6 @@ alias ll="ls -l"
 alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
-alias j="jobs"
-alias f="fg"
 alias .="source"
 alias history="history -i 1"
 alias gti="git"
@@ -84,3 +82,4 @@ alias g='cd $(ghq root)/$(ghq list | peco)'
 
 bindkey -e
 export EDITOR=vim
+eval "$(jump shell zsh --bind=z)"
