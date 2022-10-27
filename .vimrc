@@ -92,7 +92,7 @@ nnoremap ,j :e ++enc=iso-2022-jp<CR>
 
 autocmd FileType typescript setlocal sw=2 sts=0 ts=2 noet
 autocmd FileType sql setlocal sw=4 sts=0 ts=4 noet
-autocmd FileType go setlocal sw=4 sts=0 ts=4 et
+autocmd FileType go setlocal sw=4 sts=0 ts=4 noet
 autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go setlocal omnifunc=lsp#complete
 autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-]> :LspDefinition<CR>
 autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
