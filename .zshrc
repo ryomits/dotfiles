@@ -60,7 +60,6 @@ setopt hist_ignore_dups
 
 export PATH=/usr/local/bin:$PATH
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
