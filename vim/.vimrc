@@ -47,7 +47,6 @@ if dein#load_state(s:dein_dir)
 
   call dein#add('cocopon/iceberg.vim')
 
-  " for development
   call dein#add('neoclide/coc.nvim', {'rev': 'release'})
   call dein#add('Shougo/dein.vim')
   call dein#add('andymass/vim-matchup')
@@ -72,7 +71,6 @@ if dein#load_state(s:dein_dir)
   call dein#add('tyru/open-browser.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('Shougo/ddc.vim')
-  " call dein#add('matsui54/denops-popup-preview.vim')
   call dein#add('tani/ddc-fuzzy')
   call dein#add('mattn/vim-goimports')
   call dein#add('skanehira/denops-ripgrep.vim')
@@ -107,12 +105,6 @@ function! DeinClean() abort
 endfunction
 
 command! CleanPlugins call DeinClean()
-" }}}
-
-" {{{ translate.vim
-"let g:translate_endpoint = 'https://api-free.deepl.com/v2/translate'
-nmap gr <Plug>(Translate)
-vmap gr <Plug>(Translate)
 " }}}
 
 " {{{ fern.vim
