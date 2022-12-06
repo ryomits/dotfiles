@@ -2,7 +2,7 @@
 
 set -eu
 
-for file in .gitconfig .zshrc .vimrc .tmux.conf
+for file in .gitconfig .zshrc .tmux.conf
 do
-	ln -sf $(pwd)/$file ~
+	ln -sf "$(pwd)"/$file ~
 done
