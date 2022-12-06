@@ -31,6 +31,7 @@ call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 call dein#add('mattn/vim-sqlfmt')
 call dein#add('mattn/vim-goimports')
+call dein#add('tpope/vim-fugitive')
 
 call dein#end()
 
