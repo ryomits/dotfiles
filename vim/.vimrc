@@ -223,7 +223,7 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-go',
       \ 'coc-diagnostic',
-      \ 'coc-phpls',
+      \ '@yaegassy/coc-intelephense',
       \ ]
 
 call coc#config('diagnostic.messageDelay', 0)
