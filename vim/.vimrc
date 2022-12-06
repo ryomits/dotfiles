@@ -27,7 +27,6 @@ let g:skip_loading_mswin        = 1
 let g:did_install_syntax_menu   = 1
 let g:plug_shallow = 0
 
-" プラグイン設定 {{{
 " {{{ dein.vim settings
 let s:dein_dir = expand('~/.cache/dein/vim')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -65,8 +64,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('simeji/winresizer')
   call dein#add('vim-denops/denops.vim')
   call dein#add('skanehira/command.vim')
-  " call dein#add('skanehira/denops-silicon.vim')
-  " call dein#add('skanehira/denops-docker.vim')
+  call dein#add('skanehira/denops-docker.vim')
   call dein#add('skanehira/qfopen.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('skanehira/quickrun-neoterm.vim')
@@ -86,29 +84,9 @@ if dein#load_state(s:dein_dir)
   call dein#add('jlanzarotta/bufexplorer')
   call dein#add('editorconfig/editorconfig-vim')
 
-  " for documentation
-  " call dein#add('glidenote/memolist.vim')
-  " call dein#add('godlygeek/tabular')
-  " call dein#add('gyim/vim-boxdraw', {'merged': 0})
-  " call dein#add('mattn/vim-maketable')
-  " call dein#add('shinespark/vim-list2tree', {'merged': 0})
-  " call dein#add('skanehira/gyazo.vim')
-  " call dein#add('skanehira/denops-translate.vim')
-  " call dein#add('vim-jp/vimdoc-ja')
-
-  " for develop vim/neovim plugin
-  " call dein#add('LeafCage/vimhelpgenerator')
-  " call dein#add('lambdalisue/vital-Whisky', {'merged': 0})
-  " call dein#add('tweekmonster/helpful.vim')
-  " call dein#add('vim-jp/vital.vim', {'merged': 0})
-  " call dein#add('thinca/vim-themis')
-  " call dein#add('tyru/capture.vim')
-
-  " other
-  " call dein#add('itchyny/lightline.vim')
+  call dein#add('itchyny/lightline.vim')
   " call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
   " call dein#add('lambdalisue/nerdfont.vim')
-  " call dein#add('skanehira/denops-twihi.vim')
 
   " end settings
   call dein#end()
@@ -138,7 +116,7 @@ vmap gr <Plug>(Translate)
 " }}}
 
 " {{{ fern.vim
-let g:fern#renderer = "nerdfont"
+" let g:fern#renderer = "nerdfont"
 let g:fern#window_selector_use_popup = 1
 function! s:fern_init() abort
   nnoremap <buffer> <silent> q :q<CR>
@@ -351,6 +329,26 @@ set background=dark
 hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
 " }}}
 
+" {{{ lightline
+let g:lightline = {
+      \ 'colorscheme': 'iceberg',
+      \ 'active': {
+      \ 'left': [ ['mode', 'paste'], ['readonly', 'branchName', 'filepath', 'modified'] ]
+      \ },
+      \ 'component_function':{
+      \ 'filepath': 'FilePath',
+      \ },
+      \ }
+
+function! FilePath()
+  if winwidth(0) > 90
+    return expand("%:s")
+  else
+    return expand("%:t")
+  endif
+endfunction
+" }}}
+
 " options {{{
 syntax enable
 filetype plugin indent on
@@ -414,6 +412,4 @@ if executable('rg')
   command! -nargs=* -bang RG call FZGrep(<q-args>, <bang>0)
   nnoremap <silent> <Leader>r :RG<CR>
 endif
-" }}}
-
 " }}}
