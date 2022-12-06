@@ -1,6 +1,4 @@
-let g:mapleader = "\<Space>" " Leaderキーをスペースに設定
-
-" Disable unnecessary default plugins
+" {{{  Disable unnecessary default plugins
 let g:loaded_spellfile_plugin   = 1
 let g:loaded_tutor_mode_plugin  = 1
 let g:loaded_gzip               = 1
@@ -26,6 +24,7 @@ let g:did_instaetl_default_menus = 1
 let g:skip_loading_mswin        = 1
 let g:did_install_syntax_menu   = 1
 let g:plug_shallow = 0
+" }}}
 
 " {{{ dein.vim settings
 let s:dein_dir = expand('~/.cache/dein/vim')
@@ -71,6 +70,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('tyru/open-browser.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('Shougo/ddc.vim')
+  call dein#add('matsui54/denops-popup-preview.vim')
   call dein#add('tani/ddc-fuzzy')
   call dein#add('mattn/vim-goimports')
   call dein#add('skanehira/denops-ripgrep.vim')
@@ -300,8 +300,28 @@ let g:sonictemplate_vim_template_dir = ["~/.vim/template"]
 imap <silent> <C-l> <plug>(sonictemplate-postfix)
 " }}}
 
-" {{{ command.vim
-nmap c: <Plug>(command_buffer_open)
+" {{{ ddc.vim
+" disable auto completion
+function! DdcAutoCompletionDisable() abort
+  call ddc#custom#patch_global('autoCompleteEvents', [])
+  call ddc#custom#patch_global('completionMode', 'manual')
+endfunction
+
+" enabel auto completion
+function! DdcAutoCompletionEnable() abort
+  call ddc#custom#patch_global('autoCompleteEvents', ["InsertEnter", "TextChangedI", "TextChangedP"])
+  call ddc#custom#patch_global('completionMode', 'popupmenu')
+endfunction
+
+call ddc#custom#patch_global('sourceOptions', {
+  \   '_': {
+  \     'matchers': ['matcher_fuzzy'],
+  \     'sorters': ['sorter_fuzzy'],
+  \     'converters': ['converter_fuzzy']
+  \   }
+  \ })
+
+call ddc#disable()
 " }}}
 
 " colorscheme {{{
@@ -364,6 +384,7 @@ set showtabline=1
 set helplang=ja
 set backspace=indent,eol,start
 set ttimeoutlen=10
+let g:mapleader = "\<Space>" " Leaderキーをスペースに設定
 " }}}
 
 " 拡張子ごとのインデント設定 {{{
