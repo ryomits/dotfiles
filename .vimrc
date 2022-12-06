@@ -11,25 +11,17 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('vim-scripts/ruby-matchit')
 call dein#add('tpope/vim-endwise')
-call dein#add('pangloss/vim-javascript')
 call dein#add('bronson/vim-trailing-whitespace')
 call dein#add('jlanzarotta/bufexplorer')
 call dein#add('vim-scripts/AnsiEsc.vim')
-call dein#add('szw/vim-tags')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('AlessandroYorba/Alduin')
-call dein#add('nikvdp/ejs-syntax')
-call dein#add('gosukiwi/vim-atom-dark')
 call dein#add('jacoborus/tender.vim')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('elzr/vim-json')
 call dein#add('editorconfig/editorconfig-vim')
-call dein#add('jparise/vim-graphql')
-call dein#add('pantharshit00/vim-prisma')
 call dein#add('rust-lang/rust.vim')
 call dein#add('mattn/vim-sonictemplate')
 call dein#add('prabirshrestha/vim-lsp')
@@ -98,5 +90,6 @@ autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer>
 autocmd FileType typescript,typescriptreact,vim,rust,php,sh,go nnoremap <buffer> <silent> <C-w><C-]> :split \| :LspDefinition<CR>
 let g:lsp_diagnostics_float_cursor=1
 let g:lsp_text_edit_enabled = 1
+let g:sonictemplate_vim_template_dir = expand('~/.vim/sonictemplate')
 syntax on
 colorscheme Alduin

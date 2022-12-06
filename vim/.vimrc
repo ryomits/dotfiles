@@ -27,7 +27,6 @@ let g:skip_loading_mswin        = 1
 let g:did_install_syntax_menu   = 1
 let g:plug_shallow = 0
 
-"
 " プラグイン設定 {{{
 " {{{ dein.vim settings
 let s:dein_dir = expand('~/.cache/dein/vim')
@@ -53,11 +52,9 @@ if dein#load_state(s:dein_dir)
   call dein#add('neoclide/coc.nvim', {'rev': 'release'})
   call dein#add('Shougo/dein.vim')
   call dein#add('andymass/vim-matchup')
-  call dein#add('cohama/lexima.vim')
   call dein#add('vim-test/vim-test')
   call dein#add('junegunn/fzf', {'merged': 0})
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
-  "call dein#add('kshenoy/vim-signature')
   call dein#add('lambdalisue/fern.vim', {'branch': 'main'})
   call dein#add('lambdalisue/fern-hijack.vim')
   call dein#add('lambdalisue/fern-git-status.vim')
@@ -68,8 +65,8 @@ if dein#load_state(s:dein_dir)
   call dein#add('simeji/winresizer')
   call dein#add('vim-denops/denops.vim')
   call dein#add('skanehira/command.vim')
-  call dein#add('skanehira/denops-silicon.vim')
-  call dein#add('skanehira/denops-docker.vim')
+  " call dein#add('skanehira/denops-silicon.vim')
+  " call dein#add('skanehira/denops-docker.vim')
   call dein#add('skanehira/qfopen.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('skanehira/quickrun-neoterm.vim')
@@ -77,7 +74,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('tyru/open-browser.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('Shougo/ddc.vim')
-  call dein#add('matsui54/denops-popup-preview.vim')
+  " call dein#add('matsui54/denops-popup-preview.vim')
   call dein#add('tani/ddc-fuzzy')
   call dein#add('mattn/vim-goimports')
   call dein#add('skanehira/denops-ripgrep.vim')
@@ -87,6 +84,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('lambdalisue/file-protocol.vim')
   call dein#add('skanehira/winselector.vim')
   call dein#add('jlanzarotta/bufexplorer')
+  call dein#add('editorconfig/editorconfig-vim')
 
   " for documentation
   " call dein#add('glidenote/memolist.vim')
@@ -220,6 +218,7 @@ nnoremap <silent> <Leader>i :LspImport<CR>
 " scroll popup window
 nnoremap <silent><nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
 nnoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -228,26 +227,6 @@ map <silent> ga <plug>(coc-codelens-action)
 
 " use manual completion
 inoremap <silent><expr> <C-x><C-o> coc#refresh()
-
-" NOTE: leximaが初回insert時に<CR>を上書きするため、ここで一度init() を呼び出す
-call lexima#init()
-
-" NOTE: coc#pum#visible 以外を <CR>
-" にマッピングした場合、起動時にメッセージが出るため、ダミーのマッピングを用意
-inoremap <silent><expr> <CR> coc#pum#visible() ? <nop> : <nop>
-
-function! s:coc_pum_lexima_enter() abort
-  let key = lexima#expand('<CR>', 'i')
-  call coc#on_enter()
-  return "\<C-g>u" . key
-endfunction
-
-" NOTE: leximaを使っている場合、<CR>がマッピングされるため
-" coc用のマッピングを上書きする
-augroup coc-pum-enter
-  au!
-  au InsertEnter * inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : <SID>coc_pum_lexima_enter()
-augroup END
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -350,9 +329,9 @@ nnoremap ma <Plug>(coc-codeaction-cursor)
 let g:sonictemplate_vim_template_dir = ["~/.vim/template"]
 imap <silent> <C-l> <plug>(sonictemplate-postfix)
 " }}}
-"
-" {{{ lexima.vim
-set backspace=indent,eol,start
+
+" {{{ command.vim
+nmap c: <Plug>(command_buffer_open)
 " }}}
 
 " colorscheme {{{
@@ -384,11 +363,17 @@ set belloff=all
 set backspace=2
 set incsearch
 set hlsearch
-set synmaxcol=256
 set cursorline
 set autowrite
 set noswapfile
 set nu
+set nrformats+=unsigned
+set laststatus=2
+set cursorlineopt=line
+set showtabline=1
+set helplang=ja
+set backspace=indent,eol,start
+set ttimeoutlen=10
 " }}}
 
 " 拡張子ごとのインデント設定 {{{
@@ -414,6 +399,21 @@ augroup END
 
 " bufexploere {{{
 nmap <silent> ,l :BufExplorer<CR>
+" }}}
+
+" FZGrep {{{
+if executable('rg')
+  function! FZGrep(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+  endfunction
+
+  command! -nargs=* -bang RG call FZGrep(<q-args>, <bang>0)
+  nnoremap <silent> <Leader>r :RG<CR>
+endif
 " }}}
 
 " }}}
