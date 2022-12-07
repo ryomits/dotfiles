@@ -1,3 +1,5 @@
+let g:mapleader = "\<Space>" " Leaderキーをスペースに設定
+
 " {{{  Disable unnecessary default plugins
 let g:loaded_spellfile_plugin   = 1
 let g:loaded_tutor_mode_plugin  = 1
@@ -223,9 +225,10 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-go',
       \ 'coc-diagnostic',
-      \ '@yaegassy/coc-intelephense',
+      \ 'coc-phpls',
       \ ]
 
+call coc#config('intelephense.environment.phpVersion', '8.1.0')
 call coc#config('diagnostic.messageDelay', 0)
 call coc#config('notification.statusLineProgress', 0)
 call coc#config('diagnostic-languageserver.filetypes', {
@@ -384,7 +387,6 @@ set showtabline=1
 set helplang=ja
 set backspace=indent,eol,start
 set ttimeoutlen=10
-let g:mapleader = "\<Space>" " Leaderキーをスペースに設定
 " }}}
 
 " 拡張子ごとのインデント設定 {{{
