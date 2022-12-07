@@ -85,8 +85,8 @@ if dein#load_state(s:dein_dir)
   call dein#add('editorconfig/editorconfig-vim')
 
   call dein#add('itchyny/lightline.vim')
-  " call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
-  " call dein#add('lambdalisue/nerdfont.vim')
+  call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
+  call dein#add('lambdalisue/nerdfont.vim')
 
   " end settings
   call dein#end()
@@ -110,7 +110,7 @@ command! CleanPlugins call DeinClean()
 " }}}
 
 " {{{ fern.vim
-" let g:fern#renderer = "nerdfont"
+let g:fern#renderer = "nerdfont"
 let g:fern#window_selector_use_popup = 1
 function! s:fern_init() abort
   nnoremap <buffer> <silent> q :q<CR>
