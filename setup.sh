@@ -13,6 +13,7 @@ asdf plugin add golang
 asdf install golang latest
 asdf global golang latest
 go install golang.org/x/tools/gopls@latest
+go install github.com/nametake/golangci-lint-langserver@latest
 
 asdf plugin add deno
 asdf install deno latest
