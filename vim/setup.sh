@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -eu
-
 path=~/.vim
 
 if [ ! -e $path ]; then

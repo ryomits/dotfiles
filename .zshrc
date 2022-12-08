@@ -28,18 +28,18 @@ alias gti="git"
 
 DIRSTACKSIZE=100
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats '[%b]%u%c'
-zstyle ':vcs_info:git:*' stagedstr '+'
-zstyle ':vcs_info:git:*' unstagedstr '-'
-precmd () {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-  [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-RPROMPT='%1(v|%F{yellow}%1v%f|)'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' formats '[%b]%u%c'
+# zstyle ':vcs_info:git:*' stagedstr '+'
+# zstyle ':vcs_info:git:*' unstagedstr '-'
+# precmd () {
+#   psvar=()
+#   LANG=en_US.UTF-8 vcs_info
+#   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+# }
+# RPROMPT='%1(v|%F{yellow}%1v%f|)'
 
 setopt auto_menu
 setopt auto_cd
