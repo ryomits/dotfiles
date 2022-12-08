@@ -3,7 +3,7 @@ export LANG=ja_JP.UTF-8
 
 # Color
 export LSCOLORS=Exfxcxdxbxegedabagacad
-export ZLS_COLORS=$LS_COLORS
+export ZLS_COLORS=$LSCOLORS
 export CLICOLOR=true
 
 # Prompt

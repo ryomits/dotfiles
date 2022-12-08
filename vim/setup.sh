@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -eu
 
 path=~/.vim
@@ -8,7 +9,7 @@ if [ ! -e $path ]; then
 fi
 
 if [[ ! -e $HOME/.vimrc ]]; then
-  ln -sf "$PWD"/.vimrc "$HOME"/.vimrc
+  ln -s "$PWD"/.vimrc "$HOME"/.vimrc
 fi
 
 if [[ ! -e $path/template ]]; then
