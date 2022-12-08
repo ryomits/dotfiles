@@ -1,13 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-set -u
-
-for file in .gitconfig .zshrc .tmux.conf
+for file in .gitconfig .zshrc
 do
 	ln -sf "$(pwd)"/$file ~
 done
 
 brew bundle
+source ~/.zshrc
 
 asdf plugin add golang
 asdf install golang latest
