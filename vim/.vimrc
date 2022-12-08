@@ -387,6 +387,8 @@ set showtabline=1
 set helplang=ja
 set backspace=indent,eol,start
 set ttimeoutlen=10
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 " }}}
 
 " 拡張子ごとのインデント設定 {{{
