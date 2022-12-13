@@ -57,8 +57,8 @@ if dein#load_state(s:dein_dir)
   call dein#add('lambdalisue/fern.vim', {'branch': 'main'})
   call dein#add('lambdalisue/fern-hijack.vim')
   call dein#add('lambdalisue/fern-git-status.vim')
-  call dein#add('lambdalisue/gina.vim')
   call dein#add('lambdalisue/guise.vim')
+  call dein#add('tpope/vim-fugitive')
   call dein#add('mattn/emmet-vim', {'merged': 0})
   call dein#add('mattn/vim-sonictemplate')
   call dein#add('simeji/winresizer')
@@ -80,7 +80,6 @@ if dein#load_state(s:dein_dir)
   call dein#add('lambdalisue/compl-local-filename.vim')
   call dein#add('thinca/vim-prettyprint')
   call dein#add('lambdalisue/file-protocol.vim')
-  call dein#add('skanehira/winselector.vim')
   call dein#add('jlanzarotta/bufexplorer')
   call dein#add('editorconfig/editorconfig-vim')
 
@@ -128,6 +127,12 @@ augroup END
 
 nnoremap <silent> <Leader>f :Fern . -drawer<CR>
 command! Ex :Fern %:h
+" }}}
+
+" vim-fugitive
+nnoremap <silent> gs :Git status<CR>
+nnoremap <silent> gl :Git log<CR>
+nnoremap <silent> gb :Git blame<CR>
 " }}}
 
 " fzf settings {{{
@@ -327,6 +332,10 @@ call ddc#custom#patch_global('sourceOptions', {
 call ddc#disable()
 " }}}
 
+" {{{ command.vim
+nmap c: <Plug>(command_buffer_open)
+" }}}
+
 " colorscheme {{{
 colorscheme iceberg
 function s:initColorscheme() abort
@@ -429,4 +438,8 @@ if executable('rg')
   command! -nargs=* -bang RG call FZGrep(<q-args>, <bang>0)
   nnoremap <silent> <Leader>r :RG<CR>
 endif
+" }}}
+
+" terminal {{{
+nnoremap <silent> <Leader>t :terminal<CR>
 " }}}
