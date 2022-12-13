@@ -129,7 +129,7 @@ nnoremap <silent> <Leader>f :Fern . -drawer<CR>
 command! Ex :Fern %:h
 " }}}
 
-" vim-fugitive
+" vim-fugitive {{{
 nnoremap <silent> gs :Git status<CR>
 nnoremap <silent> gl :Git log<CR>
 nnoremap <silent> gb :Git blame<CR>
