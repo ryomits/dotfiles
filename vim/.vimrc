@@ -277,7 +277,6 @@ call coc#config('languageserver', {
       \})
 
 " gopls configuration
-call coc#config('go.goplsPath', 'gopls')
 call coc#config('go.goplsOptions', {
       \ 'completeUnimported': v:true,
       \ 'allExperiments': v:true,
