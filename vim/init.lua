@@ -330,4 +330,11 @@ require("lazy").setup({
     'mattn/vim-goimports',
     ft = 'go',
   },
+  {
+    'mattn/vim-sonictemplate',
+    event = { 'InsertEnter' },
+    config = function()
+      g.sonictemplate_vim_template_dir = fn.expand('~/.vim/sonictemplate')
+    end,
+  },
 })
