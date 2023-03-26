@@ -61,7 +61,6 @@ opt.ttimeoutlen = 10
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
-opt.clipboard:append({ vim.fn.has('mac') == 1 and 'unnamed' or 'unnamedplus' })
 opt.grepprg = 'rg --vimgrep'
 opt.grepformat = '%f:%l:%c:%m'
 opt.mouse = {}
@@ -133,7 +132,7 @@ end
 local nightfox_config = function()
   opt.termguicolors = false
   cmd([[
-    colorscheme Nightfox
+    colorscheme Nordfox
     hi VertSplit guifg=#535353
     hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
   ]])
@@ -143,12 +142,13 @@ local nvim_cmp_config = function()
   local cmp = require('cmp')
   cmp.setup({
     window = {
-      documentation = cmp.config.window.bordered(),
     },
     preselect = cmp.PreselectMode.None,
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-x><C-o>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = {
@@ -178,9 +178,9 @@ end
 
 local lsp_on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
-  api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   local bufopts = { silent = true, buffer = bufnr }
-  vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<Leader>i', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-\\>', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
