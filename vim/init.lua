@@ -337,4 +337,10 @@ require("lazy").setup({
       g.sonictemplate_vim_template_dir = fn.expand('~/.vim/sonictemplate')
     end,
   },
+  {
+    'jlanzarotta/bufexplorer',
+    keys = {
+      { ',l', ':BufExplorer<CR>', { silent = true } },
+    },
+  },
 })
