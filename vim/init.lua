@@ -345,9 +345,7 @@ require("lazy").setup({
   },
   {
     'jlanzarotta/bufexplorer',
-    init = function()
-      vim.g.bufExplorerDisableDefaultKeyMapping = 1
-    end,
+    init = function() vim.g.bufExplorerDisableDefaultKeyMapping = 1 end,
     keys = {
       { ',l', ':BufExplorer<CR>', { silent = true } },
     },
@@ -377,5 +375,10 @@ require("lazy").setup({
         end
       }
     },
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = { 'InsertEnter' },
+    config = function() require("nvim-autopairs").setup({ map_c_h = true }) end,
   },
 })
