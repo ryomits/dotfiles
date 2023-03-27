@@ -274,6 +274,17 @@ local gitsigns_config = function()
   })
 end
 
+local telescope_config = function()
+  require("telescope").load_extension("ui-select")
+  require('telescope').setup {
+    extensions = {
+      ['ui-select'] = {
+        require('telescope.themes').get_dropdown {}
+      }
+    }
+  }
+end
+
 local lazy_path = fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy_path) then
   fn.system({
@@ -361,9 +372,8 @@ require("lazy").setup({
       {
         'tpope/vim-fugitive',
         keys = {
-          { 'gb', ':Git blame<CR>',  { silent = true } },
-          { 'gl', ':Git log<CR>',    { silent = true } },
-          { 'gs', ':Git status<CR>', { silent = true } },
+          { 'gb', ':Git blame<CR>', { silent = true } },
+          { 'gl', ':Git log<CR>',   { silent = true } },
         },
         config = function()
           api.nvim_create_autocmd('FileType', {
@@ -380,5 +390,31 @@ require("lazy").setup({
     'windwp/nvim-autopairs',
     event = { 'InsertEnter' },
     config = function() require("nvim-autopairs").setup({ map_c_h = true }) end,
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    -- module = { "telescope" },
+    dependencies = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+    },
+    init = function()
+      local function builtin(name)
+        return function(option)
+          return function()
+            return require('telescope.builtin')[name](option or {})
+          end
+        end
+      end
+
+      vim.keymap.set('n', '<C-p>', builtin.find_files)
+      vim.keymap.set('n', '<Leader>r', builtin 'live_grep' {})
+      vim.keymap.set('n', 'md', builtin 'diagnostics' {})
+      vim.keymap.set('n', 'mf', builtin 'current_buffer_fuzzy_find' {})
+      vim.keymap.set('n', 'mh', builtin 'help_tags' { lang = 'ja' })
+      vim.keymap.set('n', 'mo', builtin 'oldfiles' {})
+      vim.keymap.set('n', 'gs', builtin 'git_status' {})
+    end,
+    config = telescope_config,
   },
 })
