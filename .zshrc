@@ -25,6 +25,7 @@ alias cp="cp -i"
 alias .="source"
 alias history="history -i 1"
 alias gti="git"
+alias vim="nvim"
 
 DIRSTACKSIZE=100
 
@@ -58,6 +59,7 @@ setopt hist_no_functions
 setopt hist_no_store
 setopt hist_ignore_dups
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=/usr/local/bin:$PATH
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 if [ -e /usr/local/share/zsh-completions ]; then
@@ -74,7 +76,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 
 alias g='cd $(ghq root)/$(ghq list | peco)'
 
-. /usr/local/opt/asdf/asdf.sh
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH=$(go env GOPATH)/bin:$PATH
