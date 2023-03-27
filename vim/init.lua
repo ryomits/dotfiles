@@ -66,6 +66,7 @@ opt.grepformat = '%f:%l:%c:%m'
 opt.mouse = {}
 opt.completeopt = 'menu,menuone,noselect'
 opt.swapfile = false
+opt.list = true
 
 local file_indents = {
   {
@@ -106,10 +107,11 @@ api.nvim_create_autocmd("TermOpen", {
   group = api.nvim_create_augroup("neovimTerminal", { clear = true }),
 })
 
+vim.keymap.set('n', '<Leader>t', ':terminal<CR>', { silent = true })
+
 local lualine_config = function()
   require('lualine').setup({})
 end
-
 
 local fern_config = function()
   g['fern#renderer'] = 'nerdfont'
@@ -130,9 +132,9 @@ local fern_config = function()
 end
 
 local nightfox_config = function()
-  opt.termguicolors = false
+  opt.termguicolors = true
   cmd([[
-    colorscheme Nordfox
+    colorscheme Nightfox
     hi VertSplit guifg=#535353
     hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
   ]])
@@ -407,8 +409,8 @@ require("lazy").setup({
         end
       end
 
-      vim.keymap.set('n', '<C-p>', builtin 'find_files', {})
-      vim.keymap.set('n', '<Leader>r', builtin 'live_grep' {})
+      vim.keymap.set('n', '<C-p>', builtin 'find_files' {})
+      vim.keymap.set('n', 'mr', builtin 'live_grep' {})
       vim.keymap.set('n', 'md', builtin 'diagnostics' {})
       vim.keymap.set('n', 'mf', builtin 'current_buffer_fuzzy_find' {})
       vim.keymap.set('n', 'mh', builtin 'help_tags' { lang = 'ja' })
