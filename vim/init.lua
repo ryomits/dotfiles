@@ -268,6 +268,12 @@ local lsp_config = function()
   })
 end
 
+local gitsigns_config = function()
+  require('gitsigns').setup({
+    current_line_blame = true,
+  })
+end
+
 local lazy_path = fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy_path) then
   fn.system({
@@ -344,6 +350,32 @@ require("lazy").setup({
     end,
     keys = {
       { ',l', ':BufExplorer<CR>', { silent = true } },
+    },
+  },
+  {
+    'lambdalisue/guise.vim',
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    event = 'BufRead',
+    config = gitsigns_config,
+    dependencies = {
+      {
+        'tpope/vim-fugitive',
+        keys = {
+          { 'gb', ':Git blame<CR>',  { silent = true } },
+          { 'gl', ':Git log<CR>',    { silent = true } },
+          { 'gs', ':Git status<CR>', { silent = true } },
+        },
+        config = function()
+          api.nvim_create_autocmd('FileType', {
+            pattern = 'git',
+            callback = function()
+              opt.number = false
+            end,
+          })
+        end
+      }
     },
   },
 })
