@@ -107,7 +107,7 @@ api.nvim_create_autocmd("TermOpen", {
   group = api.nvim_create_augroup("neovimTerminal", { clear = true }),
 })
 
-vim.keymap.set('n', '<Leader>t', ':terminal<CR>', { silent = true })
+vim.keymap.set('n', '<Leader>t', ':new | terminal<CR>', { silent = true })
 
 local lualine_config = function()
   require('lualine').setup({})
@@ -139,6 +139,18 @@ local nightfox_config = function()
     hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
   ]])
 end
+
+vim.keymap.set('c', '<C-b>', '<Left>', {})
+vim.keymap.set('c', '<C-f>', '<Right>', {})
+vim.keymap.set('c', '<C-a>', '<Home>', {})
+vim.keymap.set('c', '<Up>', '<C-p>')
+vim.keymap.set('c', '<Down>', '<C-n>')
+vim.keymap.set('c', '<C-n>', function()
+  return fn.pumvisible() == 1 and '<C-n>' or '<Down>'
+end, { expr = true })
+vim.keymap.set('c', '<C-p>', function()
+  return fn.pumvisible() == 1 and '<C-p>' or '<Up>'
+end, { expr = true })
 
 local nvim_cmp_config = function()
   local cmp = require('cmp')
@@ -175,6 +187,24 @@ local nvim_cmp_config = function()
         fn['vsnip#anonymous'](args.body)
       end
     },
+  })
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline({
+    }),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline({
+      ['<Down>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }) },
+      ['<Up>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }) },
+    }),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
   })
 end
 
@@ -313,6 +343,9 @@ require("lazy").setup({
       'lambdalisue/fern.vim',
       cmd = 'Fern',
       config = fern_config,
+      keys = {
+        { '<Leader>f', ':Fern . -drawer<CR>', { silent = true } }
+      }
     },
   },
   { 'vim-jp/vimdoc-ja' },
