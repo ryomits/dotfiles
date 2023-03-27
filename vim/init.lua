@@ -407,7 +407,7 @@ require("lazy").setup({
         end
       end
 
-      vim.keymap.set('n', '<C-p>', builtin.find_files)
+      vim.keymap.set('n', '<C-p>', builtin 'find_files', {})
       vim.keymap.set('n', '<Leader>r', builtin 'live_grep' {})
       vim.keymap.set('n', 'md', builtin 'diagnostics' {})
       vim.keymap.set('n', 'mf', builtin 'current_buffer_fuzzy_find' {})
