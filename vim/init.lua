@@ -120,13 +120,13 @@ local fern_config = function()
   api.nvim_create_autocmd('FileType', {
     pattern = 'fern',
     callback = function()
-      vim.keymap.set('n', 'q', ':q<CR>', { silent = true, buffer = true })
       vim.keymap.set('n', '<C-x>', '<Plug>(fern-action-open:split)', { silent = true, buffer = true })
       vim.keymap.set('n', '<C-v>', '<Plug>(fern-action-open:vsplit)', { silent = true, buffer = true })
       vim.keymap.set('n', '<C-t>', '<Plug>(fern-action-tcd)', { silent = true, buffer = true })
     end,
     group = api.nvim_create_augroup('fernInit', { clear = true }),
   })
+  api.nvim_create_user_command('Ex', ':Fern %:h', {})
 end
 
 local nightfox_config = function()
