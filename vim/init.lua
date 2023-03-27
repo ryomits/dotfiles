@@ -108,7 +108,6 @@ api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.keymap.set('n', '<Leader>t', ':new | terminal<CR>', { silent = true })
-
 local lualine_config = function()
   require('lualine').setup({})
 end
@@ -428,7 +427,6 @@ require("lazy").setup({
   },
   {
     'nvim-telescope/telescope.nvim',
-    -- module = { "telescope" },
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-ui-select.nvim' },
