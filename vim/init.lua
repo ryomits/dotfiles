@@ -133,7 +133,7 @@ end
 local nightfox_config = function()
   opt.termguicolors = true
   cmd([[
-    colorscheme Nightfox
+    colorscheme Nordfox
     hi VertSplit guifg=#535353
     hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
   ]])
@@ -261,14 +261,12 @@ local lsp_config = function()
     'yamlls',
     'jsonls',
     'vimls',
-    'tsserver',
-    'denols',
   }
   for _, ls in pairs(lss) do
     lspconfig[ls].setup({ on_attach = lsp_on_attach })
   end
 
-  lspconfig['lua_ls'].setup({
+  lspconfig.lua_ls.setup({
     on_attach = lsp_on_attach,
     settings = {
       Lua = {
@@ -287,7 +285,7 @@ local lsp_config = function()
     },
   })
 
-  lspconfig['intelephense'].setup({
+  lspconfig.intelephense.setup({
     on_attach = lsp_on_attach,
     settings = {
       intelephense = {
@@ -297,6 +295,15 @@ local lsp_config = function()
       }
     }
   })
+
+  if lspconfig.util.root_pattern("package.json")(fn.getcwd()) ~= nil then
+    lspconfig.tsserver.setup({
+      on_attach = lsp_on_attach,
+      root_dir = lspconfig.util.root_pattern('package.json', 'node_modules')
+    })
+  else
+    lspconfig.tsserver.setup({ on_attach = lsp_on_attach })
+  end
 end
 
 local gitsigns_config = function()
