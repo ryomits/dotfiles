@@ -66,7 +66,6 @@ if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 
-# openssl
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
@@ -76,7 +75,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 
 alias g='cd $(ghq root)/$(ghq list | peco)'
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. "$(brew --prefix asdf)"/libexec/asdf.sh
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH=$(go env GOPATH)/bin:$PATH
