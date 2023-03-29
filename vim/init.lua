@@ -199,11 +199,13 @@ local nvim_cmp_config = function()
       ['<Down>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }) },
       ['<Up>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }) },
     }),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
+    sources = cmp.config.sources(
+      {
+        { name = 'path' }
+      },
+      {
+        { name = 'cmdline' }
+      })
   })
 end
 
@@ -368,6 +370,7 @@ require("lazy").setup({
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-vsnip' },
       { 'hrsh7th/vim-vsnip' },
+      { 'hrsh7th/cmp-cmdline' },
     },
     config = nvim_cmp_config,
   },
@@ -457,4 +460,5 @@ require("lazy").setup({
     end,
     config = telescope_config,
   },
+  { 'thinca/vim-prettyprint' },
 })
