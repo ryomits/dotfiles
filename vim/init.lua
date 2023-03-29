@@ -263,48 +263,81 @@ local lsp_config = function()
     'yamlls',
     'jsonls',
     'vimls',
+    'lua_ls',
+    'intelephense',
+    'denols'
   }
+
+  local node_root_dir = lspconfig.util.root_pattern('package.json')
+  local is_node_repo = node_root_dir(fn.getcwd()) ~= nil
+
   for _, ls in pairs(lss) do
-    lspconfig[ls].setup({ on_attach = lsp_on_attach })
-  end
+    (function()
+      local opts = {}
 
-  lspconfig.lua_ls.setup({
-    on_attach = lsp_on_attach,
-    settings = {
-      Lua = {
-        runtime = {
-          version = 'LuaJIT'
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = api.nvim_get_runtime_file("", true),
-        },
-      },
-    },
-  })
-
-  lspconfig.intelephense.setup({
-    on_attach = lsp_on_attach,
-    settings = {
-      intelephense = {
-        environment = {
-          phpVersion = "8.1.0",
+      if ls == 'denols' then
+        if is_node_repo then
+          return
+        end
+        opts = {
+          cmd = { 'deno', 'lsp' },
+          root_dir = lspconfig.util.root_pattern('deps.ts', 'deno.json', 'import_map.json', '.git'),
+          init_options = {
+            lint = true,
+            unstable = true,
+            suggest = {
+              imports = {
+                hosts = {
+                  ["https://deno.land"] = true,
+                  ["https://cdn.nest.land"] = true,
+                  ["https://crux.land"] = true,
+                },
+              },
+            },
+          },
         }
-      }
-    }
-  })
+      elseif ls == 'tsserver' then
+        if not is_node_repo then
+          return
+        end
 
-  if lspconfig.util.root_pattern("package.json")(fn.getcwd()) ~= nil then
-    lspconfig.tsserver.setup({
-      on_attach = lsp_on_attach,
-      root_dir = lspconfig.util.root_pattern('package.json', 'node_modules')
-    })
-  else
-    lspconfig.tsserver.setup({ on_attach = lsp_on_attach })
+        opts = {
+          root_dir = lspconfig.util.root_pattern('package.json', 'node_modules'),
+        }
+      elseif ls == 'lua_ls' then
+        opts = {
+          settings = {
+            Lua = {
+              runtime = {
+                version = 'LuaJIT'
+              },
+              diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = api.nvim_get_runtime_file("", true),
+              },
+            },
+          },
+        }
+      elseif ls == 'intelephense' then
+        opt = {
+          settings = {
+            intelephense = {
+              environment = {
+                phpVersion = "8.1.0",
+              }
+            }
+          }
+        }
+      end
+
+      opts['on_attach'] = lsp_on_attach
+
+      lspconfig[ls].setup(opts)
+    end)()
   end
 end
 
