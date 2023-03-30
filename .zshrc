@@ -83,3 +83,5 @@ export PATH=$(go env GOPATH)/bin:$PATH
 bindkey -e
 export EDITOR=vim
 eval "$(jump shell zsh --bind=z)"
+
+export XDG_CONFIG_HOME=$HOME/.config

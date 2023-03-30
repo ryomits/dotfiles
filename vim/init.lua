@@ -211,7 +211,7 @@ end
 
 local lsp_on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
-  -- api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   local bufopts = { silent = true, buffer = bufnr }
   vim.keymap.set('n', '<Leader>i', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-\\>', vim.lsp.buf.references, bufopts)
@@ -219,7 +219,12 @@ local lsp_on_attach = function(client, bufnr)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set('n', '<C-g><C-d>', vim.diagnostic.open_float, bufopts)
-  opt.tagfunc = 'v:lua.vim.lsp.tagfunc'
+  if client.name == 'denols' then
+    nmap('<C-]>', vim.lsp.buf.definition, bufopts)
+  else
+    opt.tagfunc = 'v:lua.vim.lsp.tagfunc'
+  end
+  vim.keymap.set('n', '<Leader>cl', vim.lsp.codelens.run, bufopts)
 
   local organize_import = function()
   end
@@ -253,7 +258,6 @@ local lsp_config = function()
 
   local lspconfig = require("lspconfig")
 
-  -- mason-lspconfig will auto install LS when config included in lspconfig
   local lss = {
     'gopls',
     'golangci_lint_ls',
@@ -265,7 +269,8 @@ local lsp_config = function()
     'vimls',
     'lua_ls',
     'intelephense',
-    'denols'
+    'tsserver',
+    'denols',
   }
 
   local node_root_dir = lspconfig.util.root_pattern('package.json')
@@ -344,6 +349,18 @@ end
 local gitsigns_config = function()
   require('gitsigns').setup({
     current_line_blame = true,
+    on_attach = function()
+      local gs = package.loaded.gitsigns
+      vim.keymap.set('n', '<leader>hS', gs.stage_buffer)
+      vim.keymap.set('n', '<leader>hu', gs.undo_stage_hunk)
+      vim.keymap.set('n', '<leader>hR', gs.reset_buffer)
+      vim.keymap.set('n', '<leader>hp', gs.preview_hunk)
+      vim.keymap.set('n', '<leader>hb', function() gs.blame_line { full = true } end)
+      vim.keymap.set('n', '<leader>tb', gs.toggle_current_line_blame)
+      vim.keymap.set('n', '<leader>hd', gs.diffthis)
+      vim.keymap.set('n', '<leader>hD', function() gs.diffthis('~') end)
+      vim.keymap.set('n', '<leader>td', gs.toggle_deleted)
+    end
   })
 end
 
