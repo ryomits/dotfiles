@@ -67,6 +67,8 @@ opt.mouse = {}
 opt.completeopt = 'menu,menuone,noselect'
 opt.swapfile = false
 opt.list = true
+opt.breakindent = true
+opt.scrolloff = 50
 
 local file_indents = {
   {
@@ -90,6 +92,20 @@ for _, indent in pairs(file_indents) do
     group = api.nvim_create_augroup('fileTypeIndent', { clear = true })
   })
 end
+
+local auto_mkdir = function(dir)
+  if fn.isdirectory(dir) == 0 then
+    fn.mkdir(dir, 'p')
+  end
+end
+
+api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    auto_mkdir(fn.expand('<afile>:p:h'))
+  end,
+  group = api.nvim_create_augroup('autoMkdir', { clear = true })
+})
 
 api.nvim_create_autocmd('QuickFixCmdPost', {
   pattern = '*grep*',
