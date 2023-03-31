@@ -220,7 +220,7 @@ local lsp_on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set('n', '<C-g><C-d>', vim.diagnostic.open_float, bufopts)
   if client.name == 'denols' then
-    nmap('<C-]>', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('<C-]>', vim.lsp.buf.definition, bufopts)
   else
     opt.tagfunc = 'v:lua.vim.lsp.tagfunc'
   end
