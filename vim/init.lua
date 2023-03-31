@@ -235,20 +235,6 @@ local lsp_on_attach = function(client, bufnr)
     end
   end
   vim.keymap.set('n', 'mi', organize_import)
-
-  local augroup = api.nvim_create_augroup("LspFormatting", { clear = false })
-  if client.supports_method("textDocument/formatting") then
-    vim.keymap.set('n', ']f', vim.lsp.buf.format, { buffer = bufnr })
-
-    api.nvim_create_autocmd("BufWritePre", {
-      callback = function()
-        organize_import()
-        vim.lsp.buf.format()
-      end,
-      group = augroup,
-      buffer = bufnr,
-    })
-  end
 end
 
 local lsp_config = function()
