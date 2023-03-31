@@ -101,8 +101,7 @@ api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   callback = function()
     cmd('startinsert')
-    cmd('setlocal scrolloff=0')
-    opt.number = false
+    cmd('setlocal scrolloff=0 listchars= nonumber norelativenumber')
   end,
   group = api.nvim_create_augroup("neovimTerminal", { clear = true }),
 })
@@ -407,6 +406,7 @@ require("lazy").setup({
       { 'hrsh7th/cmp-vsnip' },
       { 'hrsh7th/vim-vsnip' },
       { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/vim-vsnip-integ' }
     },
     config = nvim_cmp_config,
   },
@@ -448,23 +448,21 @@ require("lazy").setup({
     'lewis6991/gitsigns.nvim',
     event = 'BufRead',
     config = gitsigns_config,
-    dependencies = {
-      {
-        'tpope/vim-fugitive',
-        keys = {
-          { 'gb', ':Git blame<CR>', { silent = true } },
-          { 'gl', ':Git log<CR>',   { silent = true } },
-        },
-        config = function()
-          api.nvim_create_autocmd('FileType', {
-            pattern = 'git',
-            callback = function()
-              opt.number = false
-            end,
-          })
-        end
-      }
+  },
+  {
+    'tpope/vim-fugitive',
+    keys = {
+      { 'gb', ':Git blame<CR>', { silent = true } },
+      { 'gl', ':Git log<CR>',   { silent = true } },
     },
+    config = function()
+     api.nvim_create_autocmd('FileType', {
+        pattern = 'git',
+        callback = function()
+          opt.number = false
+        end,
+      })
+    end
   },
   {
     'windwp/nvim-autopairs',
