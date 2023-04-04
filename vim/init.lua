@@ -211,8 +211,8 @@ local nvim_cmp_config = function()
   })
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
-      ['<Down>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }) },
-      ['<Up>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }) },
+      ['<Down>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
+      ['<Up>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
     }),
     sources = cmp.config.sources(
       {
