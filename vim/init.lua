@@ -152,7 +152,7 @@ end
 local nightfox_config = function()
   opt.termguicolors = true
   cmd([[
-    colorscheme Nordfox
+    colorscheme Nightfox
     hi VertSplit guifg=#535353
     hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
   ]])
