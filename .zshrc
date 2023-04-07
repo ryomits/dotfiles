@@ -59,8 +59,11 @@ setopt hist_no_functions
 setopt hist_no_store
 setopt hist_ignore_dups
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export PATH=/usr/local/bin:$PATH
+if [ "$(uname -m)" = "arm64" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
