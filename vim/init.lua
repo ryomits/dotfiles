@@ -124,7 +124,11 @@ api.nvim_create_autocmd("TermOpen", {
 
 vim.keymap.set('n', '<Leader>t', ':new | terminal<CR>', { silent = true })
 local lualine_config = function()
-  require('lualine').setup({})
+  require('lualine').setup({
+    sections = {
+      lualine_c = { 'filename', "lsp_progress" },
+    }
+  })
 end
 
 local fern_config = function()
@@ -392,7 +396,10 @@ opt.rtp:prepend(lazy_path)
 require("lazy").setup({
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
+    dependencies = {
+      { 'kyazdani42/nvim-web-devicons' },
+      { 'arkav/lualine-lsp-progress' }
+    },
     config = lualine_config,
   },
   { 'vim-denops/denops.vim' },
@@ -437,6 +444,7 @@ require("lazy").setup({
     },
     config = lsp_config,
     event = { 'BufReadPre', 'BufNewFile' },
+    build = ":MasonUpdate",
   },
   { 'editorconfig/editorconfig-vim' },
   {
