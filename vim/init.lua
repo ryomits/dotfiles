@@ -80,7 +80,7 @@ local file_indents = {
     command = 'setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab'
   },
   {
-    pattern = { 'javascript', 'typescriptreact', 'typescript', 'vim', 'lua', 'yaml', 'json', 'sh', 'zsh', 'markdown',
+    pattern = { 'javascript', 'typescriptreact', 'typescript', 'vim', 'lua', 'sh', 'zsh', 'markdown',
       'php' },
     command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent autoindent'
   },
@@ -269,8 +269,6 @@ local lsp_config = function()
     'eslint',
     'graphql',
     'bashls',
-    'yamlls',
-    'jsonls',
     'vimls',
     'lua_ls',
     'intelephense',
@@ -519,4 +517,8 @@ require("lazy").setup({
     config = telescope_config,
   },
   { 'thinca/vim-prettyprint' },
+  {
+    "github/copilot.vim",
+    lazy = false
+  },
 })
