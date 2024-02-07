@@ -3,7 +3,7 @@
   email = mitsui@sobuline.com
 [core]
   quotepath = false
-  editor = /usr/bin/vim
+  editor = nvim
   pager = delta
 [color]
   ui = true

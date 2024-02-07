@@ -519,6 +519,13 @@ require("lazy").setup({
   { 'thinca/vim-prettyprint' },
   {
     "github/copilot.vim",
-    lazy = false
+    lazy = false,
+    config = function()
+      vim.g.copilot_filetypes = {
+        gitcommit = true,
+        markfown = true,
+        text = true,
+      }
+    end,
   },
 })
