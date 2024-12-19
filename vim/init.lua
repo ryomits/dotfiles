@@ -153,9 +153,8 @@ local nightfox_config = function()
   opt.termguicolors = true
   cmd([[
     colorscheme Nightfox
-    hi VertSplit guifg=#535353
-    hi Visual ctermfg=159 ctermbg=23 guifg=#b3c3cc guibg=#384851
   ]])
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#5f87ff", bg = "NONE" })
 end
 
 vim.keymap.set('c', '<C-b>', '<Left>', {})
@@ -274,6 +273,7 @@ local lsp_config = function()
     'intelephense',
     'tsserver',
     'denols',
+    'csharp_ls',
   }
 
   local node_root_dir = lspconfig.util.root_pattern('package.json')
