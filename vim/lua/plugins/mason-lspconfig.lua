@@ -49,6 +49,7 @@ local config = function()
     'lua_ls',
     'intelephense',
     'ts_ls',
+    'graphql',
   }
 
   local lspconfig = require("lspconfig")

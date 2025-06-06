@@ -11,6 +11,7 @@ local config = function()
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-n>"] = cmp.mapping.select_next_item(),
       ['<C-x><C-o>'] = cmp.mapping.complete(),
+			['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     experimental = {
       ghost_text = false
