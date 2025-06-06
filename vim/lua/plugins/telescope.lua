@@ -1,9 +1,23 @@
-local telescope_config = function()
+local config = function()
   require("telescope").load_extension("ui-select")
   require('telescope').setup {
+		defaults = {
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+        '--hidden',
+        '--glob',
+        '!.git/'
+      },
+    },
     extensions = {
       ['ui-select'] = {
-        require('telescope.themes').get_dropdown {}
+        require('telescope.themes').get_dropdown({})
       }
     }
   }
@@ -30,9 +44,10 @@ local telescope = {
     vim.keymap.set('n', 'mf', builtin 'current_buffer_fuzzy_find' {})
     vim.keymap.set('n', 'mh', builtin 'help_tags' { lang = 'ja' })
     vim.keymap.set('n', 'mo', builtin 'oldfiles' {})
-    vim.keymap.set('n', 'gs', builtin 'git_status' {})
+    vim.keymap.set('n', 'mc', builtin 'commands' {})
+    vim.keymap.set('n', ',l', builtin 'buffers' {})
   end,
-  config = telescope_config,
+  config = config,
 }
 
 return telescope
