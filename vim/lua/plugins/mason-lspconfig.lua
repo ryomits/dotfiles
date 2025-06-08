@@ -6,10 +6,10 @@ local config = function()
       'ts_ls',
       'yamlls',
       'lua_ls',
-      'denols',
       'bashls',
       'marksman',
-      'intelephense'
+      'intelephense',
+			'denols',
     },
   })
 end
