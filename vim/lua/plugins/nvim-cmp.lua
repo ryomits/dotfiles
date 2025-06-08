@@ -11,7 +11,7 @@ local config = function()
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-n>"] = cmp.mapping.select_next_item(),
       ['<C-x><C-o>'] = cmp.mapping.complete(),
-			['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     experimental = {
       ghost_text = false
@@ -40,8 +40,7 @@ local config = function()
     },
   })
   cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline({
-    }),
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }

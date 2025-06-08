@@ -9,7 +9,7 @@ local config = function()
       'bashls',
       'marksman',
       'intelephense',
-			'denols',
+      'denols',
     },
   })
 end
