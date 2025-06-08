@@ -3,9 +3,12 @@ local hlchunk = {
   event = { 'UIEnter' },
   config = function()
     require('hlchunk').setup({
-			indent = {
-				enable = true,
-			}
+      chunk = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      }
     })
   end
 }
