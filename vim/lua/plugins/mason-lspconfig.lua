@@ -10,9 +10,23 @@ local config = function()
       'marksman',
       'intelephense',
       'denols',
+      'eslint',
     },
   })
 end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('lsp', { clear = true }),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+    if client:supports_method("textDocument/formatting") then
+      vim.keymap.set('n', ']f', vim.lsp.buf.format, { buffer = bufnr })
+    end
+  end,
+})
+vim.diagnostic.config({ virtual_text = true })
 
 local mason = {
   'williamboman/mason-lspconfig.nvim',
@@ -26,17 +40,6 @@ local mason = {
     {
       'neovim/nvim-lspconfig',
       config = function()
-        vim.diagnostic.config({ virtual_text = true })
-        local augroup = vim.api.nvim_create_augroup('lsp/init.lua', {})
-        vim.api.nvim_create_autocmd('LspAttach', {
-          group = augroup,
-          callback = function(args)
-            local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-          end,
-        })
-
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.completion.completionItem.resolveSupport = {
           properties = {
