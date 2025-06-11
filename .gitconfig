@@ -4,22 +4,17 @@
 [core]
   quotepath = false
   editor = nvim
-  pager = delta
-[color]
-  ui = true
-[gui]
-  encoding = utf-8
 [push]
-  default = simple
-[alias]
-  amend = commit --amend -C HEAD
-  st = status
-  browse = !hub browse
-  compare = !hub compare $2
+  default = current
+  autoSetupRemote = true
+[commit]
+  verbose = true
 [pull]
   rebase = false
 [interactive]
   diffFilter = delta --color-only
+[alias]
+  st = status
 [delta]
   features = line-numbers decorations
   whitespace-error-style = 22 reverse
@@ -27,3 +22,12 @@
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
   file-decoration-style = none
+[diff]
+  tool = difftastic
+  external = difft
+[difftool]
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
