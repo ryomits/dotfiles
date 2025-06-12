@@ -21,6 +21,7 @@ local file_indents = {
       'lua',
       'yaml',
       'json',
+      'jsonc',
       'sh',
       'zsh',
       'markdown',
