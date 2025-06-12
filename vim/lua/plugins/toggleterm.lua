@@ -5,7 +5,7 @@ local toggleterm = {
     size = 30,
   },
   keys = {
-    { "<Leader>t", ":ToggleTerm<CR>", desc = "Toggle Terminal" },
+    { "<Leader>to", ":ToggleTerm<CR>", desc = "Toggle Terminal" },
   },
 }
 
