@@ -59,11 +59,7 @@ setopt hist_no_functions
 setopt hist_no_store
 setopt hist_ignore_dups
 
-if [ "$(uname -m)" = "arm64" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-  eval "$(/usr/local/bin/brew shellenv)"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
@@ -78,7 +74,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 
 alias g='cd $(ghq root)/$(ghq list | peco)'
 
-. "$(brew --prefix asdf)"/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH=$(go env GOPATH)/bin:$PATH
