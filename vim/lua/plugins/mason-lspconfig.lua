@@ -19,10 +19,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp', { clear = true }),
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+    vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, { silent = true, buffer = args.buf })
+    vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, { silent = true, buffer = args.buf })
     if client:supports_method("textDocument/formatting") then
-      vim.keymap.set('n', ']f', vim.lsp.buf.format, { buffer = bufnr })
+      vim.keymap.set('n', ']f', vim.lsp.buf.format, { buffer = args.buf })
     end
   end,
 })
