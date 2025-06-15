@@ -20,6 +20,7 @@ alias cp="cp -i"
 alias history="history -i 1"
 alias gti="git"
 alias g='cd $(ghq root)/$(ghq list | peco)'
+alias cat="bat"
 
 if [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
