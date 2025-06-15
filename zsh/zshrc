@@ -1,0 +1,58 @@
+PROMPT='%(?,%F{green},%F{red})[%n %~]%#%f '
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+autoload -U compinit vcs_info
+autoload -U colors && colors
+zmodload zsh/complist
+compinit -u
+
+alias vi=vim
+alias vim="nvim"
+alias ls="lsd"
+alias ll="ls -la"
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
+alias history="history -i 1"
+alias gti="git"
+alias g='cd $(ghq root)/$(ghq list | peco)'
+
+if [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+fi
+
+bindkey -e
+DIRSTACKSIZE=100
+
+setopt auto_menu
+setopt auto_cd
+setopt no_beep
+setopt auto_pushd
+setopt multios
+setopt extended_history
+setopt hist_reduce_blanks
+setopt correct
+setopt append_history
+setopt inc_append_history
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+
+ZLS_COLORS="di=34:ln=36:ex=32"
+zstyle ':completion:*' list-colors "${(s.:.)ZLS_COLORS}"
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+eval "$(jump shell zsh --bind=z)"
+
+function switch_aws() {
+  config=$(aws configure list-profiles | sort | fzf --reverse)
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  export AWS_PROFILE=$config
+}
