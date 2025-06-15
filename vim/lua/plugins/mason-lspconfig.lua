@@ -11,6 +11,7 @@ local config = function()
       'intelephense',
       'denols',
       'eslint',
+      'gopls',
     },
   })
 end
@@ -21,6 +22,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
     vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, { silent = true, buffer = args.buf })
     vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, { silent = true, buffer = args.buf })
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { silent = true, buffer = args.buf })
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { silent = true, buffer = args.buf })
+    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { silent = true, buffer = args.buf })
     if client:supports_method("textDocument/formatting") then
       vim.keymap.set('n', ']f', vim.lsp.buf.format, { buffer = args.buf })
     end
