@@ -5,5 +5,5 @@ if [[ ! -d $HOME/.tmux-themepack ]]; then
 fi
 
 if [[ ! -e $HOME/.tmux.conf ]]; then
-    ln -s "$PWD"/.tmux.conf ~/.tmux.conf
+    ln -s "$PWD"/tmux.conf ~/.tmux.conf
 fi
