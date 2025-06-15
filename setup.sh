@@ -1,10 +1,5 @@
 #!/usr/bin/env zsh
 
-for file in .gitconfig .zshrc
-do
-	ln -sf "$(pwd)"/$file ~
-done
-
 brew bundle
 source ~/.zshrc
 
