@@ -10,7 +10,7 @@ autoload -U colors && colors
 zmodload zsh/complist
 compinit -u
 
-alias vi=vim
+alias vi="nvim"
 alias vim="nvim"
 alias ls="lsd"
 alias ll="ls -la"
