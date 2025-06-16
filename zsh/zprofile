@@ -1,7 +1,15 @@
+case "$(uname -s)" in
+  Darwin)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    ;;
+  Linux)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    ;;
+esac
+
 export LANG=ja_JP.UTF-8
 export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
-eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
