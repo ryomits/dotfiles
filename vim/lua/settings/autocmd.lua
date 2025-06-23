@@ -3,14 +3,27 @@ local auto_mkdir = function(dir)
     vim.fn.mkdir(dir, 'p')
   end
 end
+vim.filetype.add({
+  extension = {
+    graphqxl = 'graphql',
+  }
+})
 local file_indents = {
   {
     pattern = 'go',
-    command = 'setlocal tabstop=4 shiftwidth=4'
+    callback = function()
+      vim.bo.tabstop = 4
+      vim.bo.shiftwidth = 4
+    end,
   },
   {
     pattern = 'rust',
-    command = 'setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab'
+    callback = function()
+      vim.bo.tabstop = 4
+      vim.bo.softtabstop = 4
+      vim.bo.shiftwidth = 4
+      vim.bo.expandtab = true
+    end,
   },
   {
     pattern = {
@@ -27,18 +40,26 @@ local file_indents = {
       'markdown',
       'php',
       'graphql',
-      'graphqxl'
     },
-    command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent autoindent'
+    callback = function()
+      vim.bo.tabstop = 2
+      vim.bo.softtabstop = 2
+      vim.bo.shiftwidth = 2
+      vim.bo.expandtab = true
+      vim.bo.smartindent = true
+      vim.bo.autoindent = true
+    end,
   },
 }
-for _, indent in pairs(file_indents) do
+local indent_group = vim.api.nvim_create_augroup('fileTypeIndent', { clear = true })
+for _, indent in ipairs(file_indents) do
   vim.api.nvim_create_autocmd('FileType', {
     pattern = indent.pattern,
-    command = indent.command,
-    group = vim.api.nvim_create_augroup('fileTypeIndent', { clear = true })
+    callback = indent.callback,
+    group = indent_group,
   })
 end
+
 vim.api.nvim_create_autocmd('QuickFixCmdPost', {
   pattern = '*grep*',
   command = 'cwindow',
@@ -61,4 +82,3 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
   group = vim.api.nvim_create_augroup('autoMkdir', { clear = true })
 })
-
