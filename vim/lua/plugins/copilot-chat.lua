@@ -6,14 +6,15 @@ local copilotChat = {
     { 'nvim-lua/plenary.nvim' },
   },
   opts = {
-    model = 'claude-3.7-sonnet-thought',
+   model = 'claude-3.7-sonnet-thought',
+   auto_insert_mode = true,
     window = {
-      layout = 'float'
+      layout = 'float',
     },
     prompts = {
       Commit = {
         prompt = '$gpt-4o Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block.',
-        context = { 'buffer', 'git:staged' }
+        sticky = { '#gitdiff:staged', '#buffer' }
       }
     }
   },
@@ -21,28 +22,21 @@ local copilotChat = {
     {
       '<Leader>cc',
       function()
-        local actions = require('CopilotChat.actions')
-        require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
+        require('CopilotChat').select_prompt()
       end,
       desc = 'CopilotChat - Prompt actions',
-      mode = {
-        'n',
-        'v',
-      },
+      mode = { 'n', 'v', },
     },
     {
       '<Leader>co',
       function()
-        local chat = require('CopilotChat')
-        chat.open()
+        require('CopilotChat').open()
       end,
       desc = 'CopilotChat - Open chat',
-      mode = {
-        'n',
-        'v',
-      },
-    }
+      mode = { 'n', 'v', },
+    },
   },
 }
+
 
 return copilotChat
