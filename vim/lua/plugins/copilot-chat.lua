@@ -6,7 +6,7 @@ local copilotChat = {
     { 'nvim-lua/plenary.nvim' },
   },
   opts = {
-   model = 'claude-3.7-sonnet-thought',
+   model = 'claude-sonnet-4',
    auto_insert_mode = true,
     window = {
       layout = 'float',
