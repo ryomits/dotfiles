@@ -19,3 +19,4 @@ asdf set deno latest
 asdf plugin add nodejs
 asdf install nodejs latest
 asdf set nodejs latest
+npm install -g ccusage
