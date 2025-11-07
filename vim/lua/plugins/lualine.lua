@@ -4,6 +4,9 @@ local lualine_config = function()
     options = {
       theme = theme,
     },
+    sections = {
+      lualine_x = { "ccusage" },
+    },
   })
 end
 local lualine = {
