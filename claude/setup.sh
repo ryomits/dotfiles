@@ -1,24 +1,29 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-TARGET_DIR="$HOME/.claude/rules"
-
-if [ ! -d "$TARGET_DIR" ]; then
-  mkdir -p "$TARGET_DIR"
+if [ ! -e $HOME/.claude ]; then
+  mkdir -p $HOME/.claude
 fi
 
-# Symlink all rule files preserving directory structure
-find "$SCRIPT_DIR/rules" -name "*.md" | while read -r src; do
-  relative="${src#$SCRIPT_DIR/rules/}"
-  dest="$TARGET_DIR/$relative"
-  dest_dir="$(dirname "$dest")"
+if [[ ! -e $HOME/.claude/hooks ]]; then
+  ln -s $PWD/hooks $HOME/.claude/hooks
+fi
 
-  mkdir -p "$dest_dir"
+if [[ ! -e $HOME/.claude/agents ]]; then
+  ln -s $PWD/agents $HOME/.claude/agents
+fi
 
-  if [ -L "$dest" ]; then
-    rm "$dest"
-  fi
+if [[ ! -e $HOME/.claude/settings.json ]]; then
+  ln -s $PWD/settings.json $HOME/.claude/settings.json
+fi
 
-  ln -s "$src" "$dest"
-  echo "Linked: $dest -> $src"
-done
+if [[ ! -e $HOME/.claude/skills ]]; then
+  ln -s $PWD/skills $HOME/.claude/skills
+fi
+
+if [[ ! -e $HOME/.claude/rules ]]; then
+  ln -s $PWD/rules $HOME/.claude/rules
+fi
+
+if [[ ! -e $HOME/.claude/CLAUDE.md ]]; then
+  ln -s $PWD/CLAUDE.md $HOME/.claude/CLAUDE.md
+fi
