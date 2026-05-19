@@ -16,9 +16,13 @@ if [[ ! -e $HOME/.claude/settings.json ]]; then
   ln -s $PWD/settings.json $HOME/.claude/settings.json
 fi
 
-if [[ ! -e $HOME/.claude/skills ]]; then
-  ln -s $PWD/skills $HOME/.claude/skills
-fi
+mkdir -p $HOME/.claude/skills
+for skill_dir in $PWD/skills/*/; do
+  skill_name=$(basename "$skill_dir")
+  if [[ ! -e $HOME/.claude/skills/$skill_name ]]; then
+    ln -s "$skill_dir" "$HOME/.claude/skills/$skill_name"
+  fi
+done
 
 if [[ ! -e $HOME/.claude/rules ]]; then
   ln -s $PWD/rules $HOME/.claude/rules

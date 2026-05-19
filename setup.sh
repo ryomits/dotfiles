@@ -20,3 +20,6 @@ asdf plugin add nodejs
 asdf install nodejs latest
 asdf set nodejs latest
 npm install -g ccusage
+
+(cd claude && ./setup.sh)
+(cd agent-skills && ./setup.sh)
