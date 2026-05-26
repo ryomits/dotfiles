@@ -21,5 +21,9 @@ asdf install nodejs latest
 asdf set nodejs latest
 npm install -g ccusage
 
+asdf plugin add ruby
+asdf install ruby latest
+asdf set ruby latest
+
 (cd claude && ./setup.sh)
 (cd agent-skills && ./setup.sh)
