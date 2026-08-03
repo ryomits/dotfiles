@@ -23,6 +23,10 @@ if [[ ! -e "$nvim_path"/after ]]; then
   ln -s "$PWD"/after "$nvim_path"/after
 fi
 
+if [[ ! -e "$nvim_path"/lazy-lock.json ]]; then
+  ln -s "$PWD"/lazy-lock.json "$nvim_path"/lazy-lock.json
+fi
+
 if [[ ! -e $HOME/.vimrc ]]; then
   ln -s "$PWD"/.vimrc "$HOME"/.vimrc
 fi
