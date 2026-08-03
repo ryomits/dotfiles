@@ -12,7 +12,6 @@ local config = function()
       'denols',
       'eslint',
       'gopls',
-      'ruby_lsp',
     },
   })
 end
