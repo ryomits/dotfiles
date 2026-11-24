@@ -31,6 +31,7 @@ brew "lsd"
 brew "procs"
 brew "bat"
 brew "gemini-cli"
+brew "ollama", restart_service: :changed
 cask "gcloud-cli"
 cask "clipy"
 cask "karabiner-elements"
